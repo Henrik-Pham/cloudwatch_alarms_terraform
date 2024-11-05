@@ -25,10 +25,11 @@ jobs:
         uses: hashicorp/setup-terraform@v2
 
       - name: Terraform Init
-        working-directory: ./infra
+        working-directory: ./cloudwatch_alarms_terraform/infra
         run: terraform init
 
       - name: Terraform Plan
+        working-directory: ./cloudwatch_alarms_terraform/infra
         id: plan
         run: terraform plan -var="prefix=$PREFIX" -var="image=$IMAGE" -var="alarm_email=heph001@student.kristiania.no" -no-color
         continue-on-error: true
@@ -39,5 +40,6 @@ jobs:
         run: exit 1
 
       - name: Terraform Apply
+        working-directory: ./cloudwatch_alarms_terraform/infra
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         run: terraform apply -var="prefix=$PREFIX" -var="image=$IMAGE" -auto-approve
