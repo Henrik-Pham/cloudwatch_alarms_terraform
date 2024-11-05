@@ -52,3 +52,4 @@ module "alarm" {
   prefix      = var.student_name
   threshold   = "100000"  # Juster denne verdien basert på ønsket alarmgrense
 }
+# Test change for workflow
