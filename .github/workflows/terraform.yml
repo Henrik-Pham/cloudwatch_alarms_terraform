@@ -29,9 +29,8 @@ jobs:
         run: terraform init
 
       - name: Terraform Plan
-        working-directory: ./infra
         id: plan
-        run: terraform plan -var="prefix=$PREFIX" -var="image=$IMAGE" -no-color
+        run: terraform plan -var="prefix=$PREFIX" -var="image=$IMAGE" -var="alarm_email=heph001@student.kristiania.no" -no-color
         continue-on-error: true
         if: github.event_name == 'pull_request'
 
